@@ -39,6 +39,8 @@ text-gray-800
 hover:text-gray-100
 hover:bg-gray-800
 shadow
+transition-colors	
+duration-500	
 `;
 
 const AnswerSubmit = tw.button`
@@ -124,28 +126,33 @@ const SingleQuestion = ({
           <strong> Q{selectedQuestionIndex + 1}</strong>.
         </Question>
         <div className="w-full md:w-auto">
-          <Question className="mb-4 md:mb-8">{question}</Question>
-          {options.length > 0 ? (
-            <OptionGrid>
-              {options.map((element) => {
+          <Question className="mb-6 md:mb-8">{question}</Question>
+          <OptionGrid>
+            {options.length > 0 ? (
+              options.map((element) => {
                 return (
                   <Option onClick={() => handleAnswerSelection(element)}>
                     <div className="flex items-center ">
                       <div className="w-8 h-8 rounded-full bg-white mr-4 flex items-center justify-center">
                         {selectedOption?.id === element.id && (
-                          <div className="w-6 h-6 rounded-full bg-green-600"></div>
+                          <div className="w-6 h-6 rounded-full bg-green-600 "></div>
                         )}
                       </div>
                       <p> {element.title}</p>
                     </div>
                   </Option>
                 );
-              })}
-              {/* <Skeleton count={6} /> */}
-            </OptionGrid>
-          ) : (
-            <Skeleton count={4} />
-          )}
+              })
+            ) : (
+              <>
+                <Skeleton className="option" />
+                <Skeleton className="option" />
+                <Skeleton className="option" />
+                <Skeleton className="option" />
+              </>
+            )}
+          </OptionGrid>
+
           <AnswerSubmit
             onClick={() => {
               handelNextOpearations();

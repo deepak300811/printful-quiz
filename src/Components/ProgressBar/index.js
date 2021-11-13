@@ -48,6 +48,8 @@ const ProgressBar = () => {
               text-white
               justify-center
               bg-green-700	
+              transition-all	
+              duration-1000 ease-in-out
             "
         ></div>
       </div>

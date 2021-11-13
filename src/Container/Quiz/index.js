@@ -28,13 +28,17 @@ const Quiz = () => {
     <div>
       <QuizHeader />
 
-      {questions.length > 0 && (
-        <SingleQuestion
-          quizID={globalState.selectedQuiz.id}
-          questionId={questions[globalState.selectedQuestion].id}
-          question={questions[globalState.selectedQuestion].title}
-          selectedQuestionIndex={globalState.selectedQuestion}
-        />
+      {questions.length > 0 ? (
+        <>
+          <SingleQuestion
+            quizID={globalState.selectedQuiz.id}
+            questionId={questions[globalState.selectedQuestion].id}
+            question={questions[globalState.selectedQuestion].title}
+            selectedQuestionIndex={globalState.selectedQuestion}
+          />
+        </>
+      ) : (
+        <div className="loader mt-80">Loading...</div>
       )}
     </div>
   );

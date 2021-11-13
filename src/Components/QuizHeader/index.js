@@ -38,6 +38,7 @@ export const StopButton = tw.div`
 text-white
 text-base
 bg-red-600	
+hover:bg-red-500
 py-1
 px-3
 rounded-lg
@@ -68,7 +69,7 @@ const QuizHeader = () => {
   return (
     <HeaderContainer>
       <FlexBox>
-        <Brand>Quiz</Brand>
+        <Brand>Printful</Brand>
         <HeaderOtherText>
           <UserIcon className="mr-2">
             <svg
