@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useStore } from "../../Store";
-import { setQuestionsLength, stopTest } from "../../Store/QuizDataReducer";
+import { setQuestionsLength } from "../../Store/QuizDataReducer";
 import SingleQuestion from "../../Components/Single-Question";
 import QuizHeader from "../../Components/QuizHeader";
 import axios from "axios";
@@ -27,7 +27,7 @@ const Quiz = () => {
   return (
     <div>
       <QuizHeader />
-      <button onClick={() => dispatch(stopTest())}>Logout</button>
+
       {questions.length > 0 && (
         <SingleQuestion
           quizID={globalState.selectedQuiz.id}

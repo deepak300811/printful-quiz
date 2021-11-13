@@ -1,6 +1,15 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { useStore } from "../../Store";
 
-const ProgressBar = ({ percentage, total, answered }) => {
+const ProgressBar = () => {
+  const [globalState] = useStore();
+  const [percentage, setPercentage] = useState(0);
+  useEffect(() => {
+    const percentageCompleted = Math.round(
+      (globalState.selectedQuestion / globalState.noOfQuestions) * 100
+    );
+    setPercentage(percentageCompleted);
+  }, [globalState]);
   return (
     <div className="relative pt-1 mt-4">
       <div className="flex mb-2 items-center justify-between">
@@ -18,12 +27,13 @@ const ProgressBar = ({ percentage, total, answered }) => {
             "
             // uppercase
           >
-            {answered} out of {total} answered
+            {globalState.selectedQuestion} out of {globalState.noOfQuestions}{" "}
+            answered
           </span>
         </div>
         <div className="text-right">
           <span className="text-xs font-semibold inline-block text-white">
-            {percentage}%
+            {percentage}% Completed
           </span>
         </div>
       </div>

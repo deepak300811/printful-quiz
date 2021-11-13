@@ -14,7 +14,12 @@
 :focus {
   outline: none !important;
 }
-
+.react-loading-skeleton {
+  height: 80px !important;
+  margin-bottom: 0.5rem !important;
+  background: #e5e7eb !important;
+  border-radius: 10px !important;
+}
 .react-select-container {
   border: none !important;
   padding: 0;

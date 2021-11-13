@@ -54,6 +54,10 @@ const makeEntryInSessionStorage = (state) => {
   sessionStorage.setItem("ultimate_quiz", JSON.stringify(state));
 };
 
+const deleteFromSession = () => {
+  sessionStorage.removeItem("ultimate_quiz");
+};
+
 export const quizDataReducer = (state = initialState, action) => {
   if (action.type === INPUT_EXAMINEE_DETAILS) {
     console.log("reducdata=", action);
@@ -78,10 +82,11 @@ export const quizDataReducer = (state = initialState, action) => {
     console.log("next option=", action, state);
     if (state.selectedQuestion === state.noOfQuestions - 1) {
       makeEntryInSessionStorage({ ...state, testCompletion: true });
-
+      deleteFromSession();
       return {
         ...state,
         testCompletion: true,
+        selectedQuestion: state.selectedQuestion + 1,
       };
     } else {
       makeEntryInSessionStorage({

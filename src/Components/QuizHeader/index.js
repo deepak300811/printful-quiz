@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import tw from "tailwind-styled-components";
 import styled from "styled-components";
 import ProgressBar from "../ProgressBar";
@@ -7,7 +7,11 @@ import { stopTest } from "../../Store/QuizDataReducer";
 import { Container } from "../../styles/Global/GenericComponents";
 export const HeaderContainer = tw(Container)`
 bg-gray-800
-shadow-2xl		
+shadow-xl
+pb-4
+absolute
+top-0	
+left-0		
 `;
 
 export const Brand = tw.p`
@@ -57,15 +61,10 @@ export const Tooptip = styled.div`
 const QuizHeader = () => {
   const [showToolTip, setShowTooptip] = useState(false);
   const [globalState, dispatch] = useStore();
-  const [percentage, setPercentage] = useState(0);
   const handleStop = () => {
     dispatch(stopTest());
   };
-  useEffect(() => {
-    setPercentage(
-      (globalState.selectedQuestion / globalState.noOfQuestions) * 100
-    );
-  }, [globalState]);
+
   return (
     <HeaderContainer>
       <FlexBox>
@@ -103,11 +102,7 @@ const QuizHeader = () => {
           </StopButton>
         </HeaderOtherText>
       </FlexBox>
-      <ProgressBar
-        percentage={Math.round(percentage)}
-        answered={globalState.selectedQuestion}
-        total={globalState.noOfQuestions}
-      />
+      <ProgressBar />
     </HeaderContainer>
   );
 };

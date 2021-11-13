@@ -20,8 +20,8 @@ const InputForm = () => {
     label: "Please Select Quiz",
   });
   const [examineeName, setExamineeName] = useState("");
-  const [isExinameeNameInvalid, setExinameeNameInvalid] = useState(true);
-  const [isQuizSelectionInvalid, setquizSelectionInvalid] = useState(true);
+  const [isExinameeNameInvalid, setExinameeNameInvalid] = useState(false);
+  const [isQuizSelectionInvalid, setquizSelectionInvalid] = useState(false);
   const [isMounted, setIsMounted] = useState(true);
   useEffect(() => {
     if (isMounted) {
@@ -57,11 +57,13 @@ const InputForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (selectedOption.value === 0) {
-      setquizSelectionInvalid(true);
+    setExinameeNameInvalid(true);
+    setquizSelectionInvalid(true);
+    if (selectedOption.value !== 0) {
+      setquizSelectionInvalid(false);
     }
-    if (!examineeName || examineeName.length < 1) {
-      setExinameeNameInvalid(true);
+    if (examineeName && examineeName.length > 2) {
+      setExinameeNameInvalid(false);
     }
     if (!isQuizSelectionInvalid && !isExinameeNameInvalid) {
       dispatch(
@@ -87,24 +89,24 @@ const InputForm = () => {
 
   return (
     <StyledFormContainer>
-      <Form>
-        <Heading>EXAMINEE DETAILS</Heading>
-        <form onSubmit={(e) => handleSubmit(e)}>
-          <div className="mb-6">
-            <Label>EXINAMEE NAME</Label>
-            <input
-              type="text"
-              value={examineeName}
-              placeholder="Please Enter Name"
-              className="p-3.5 bg-gray-200 rounded-lg  w-full "
-              onChange={(e) => handelExinameeName(e)}
-            ></input>
-            {isExinameeNameInvalid && <Error>Please enter name</Error>}
-          </div>
-          <div className="mb-10">
-            <Label>SELECT QUIZ</Label>
+      {quizCategories.length > 0 && (
+        <Form>
+          <Heading>EXAMINEE DETAILS</Heading>
+          <form onSubmit={(e) => handleSubmit(e)}>
+            <div className="mb-6">
+              <Label>EXINAMEE NAME</Label>
+              <input
+                type="text"
+                value={examineeName}
+                placeholder="Please Enter Name"
+                className="p-3.5 bg-gray-200 rounded-lg  w-full "
+                onChange={(e) => handelExinameeName(e)}
+              ></input>
+              {isExinameeNameInvalid && <Error>Please enter name</Error>}
+            </div>
+            <div className="mb-10">
+              <Label>SELECT QUIZ</Label>
 
-            {quizCategories.length > 0 && (
               <Select
                 className=" bg-gray-200 rounded-lg  w-full "
                 classNamePrefix="custom-select	"
@@ -114,17 +116,18 @@ const InputForm = () => {
                 placeholder="Please Select Any Quiz Type"
                 isSearchable={false}
               />
-            )}
-            {isQuizSelectionInvalid && <Error>Please select quiz</Error>}
-          </div>
-          <StyledButton
-            type="submit"
-            className=" p-4  w-full lg:w-auto px-4 md:px-6 "
-          >
-            START QUIZ
-          </StyledButton>
-        </form>
-      </Form>
+
+              {isQuizSelectionInvalid && <Error>Please select quiz</Error>}
+            </div>
+            <StyledButton
+              type="submit"
+              className=" p-4  w-full lg:w-auto px-4 md:px-6 "
+            >
+              START QUIZ
+            </StyledButton>
+          </form>
+        </Form>
+      )}
     </StyledFormContainer>
   );
 };
