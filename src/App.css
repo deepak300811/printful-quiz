@@ -1,38 +1,53 @@
-.App {
-  text-align: center;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Roboto", sans-serif;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+:focus {
+  outline: none !important;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.react-select-container {
+  border: none !important;
+  padding: 0;
 }
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.__input-container {
+  padding: 0;
 }
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.__control {
+  outline: none !important;
+  background: #e4e7eb !important;
+  border: none !important;
+  padding: none;
+  box-shadow: none !important;
 }
-
-.App-link {
-  color: #61dafb;
+.__control:hover,
+.__control:focus,
+.custom-select,
+.custom-select:hover,
+.custom-select:focus,
+.__control.__control--is-focused {
+  outline: none !important;
+  border-color: none !important;
 }
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.__input-container {
+  padding: 0 !important;
+}
+.__value-containe {
+  padding: 14px !important;
+}
+.__single-value {
+  font-size: 16px !important;
+  padding: 14px !important;
+}
+.__value-container {
+  padding: 0rem !important;
 }
