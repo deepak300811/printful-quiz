@@ -76,7 +76,7 @@ const InputForm = () => {
     <StyledFormContainer>
       {quizCategories.length > 0 && (
         <Form>
-          <Heading>EXAMINEE DETAILS</Heading>
+          <Heading>Technical Task</Heading>
           <form onSubmit={(e) => handleSubmit(e)}>
             <div className="mb-6">
               <Label>EXINAMEE NAME</Label>

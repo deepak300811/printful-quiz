@@ -7,7 +7,7 @@ import { stopTest } from "../../Store/QuizDataReducer";
 import { Container } from "../../styles/Global/GenericComponents";
 export const HeaderContainer = tw(Container)`
 bg-gray-800
-shadow-xl
+shadow-2xl
 pb-4
 absolute
 top-0	
@@ -16,7 +16,18 @@ left-0
 
 export const Brand = tw.p`
 text-white	
-text-3xl	`;
+text-3xl	
+leading-12
+  `;
+
+export const StyledBrand = styled(Brand)`
+  font-family: "Pacifico", cursive;
+  color: #e0e0e0;
+  @media (max-width: 500px) {
+    font-size: 1.6rem;
+  }
+`;
+
 export const HeaderOtherText = tw.span`
   flex
   items-center
@@ -84,7 +95,7 @@ const QuizHeader = () => {
   return (
     <HeaderContainer>
       <FlexBox>
-        <Brand>Printful</Brand>
+        <StyledBrand>Printful .</StyledBrand>
         <HeaderOtherText>
           <UserIcon className="mr-2">
             <svg

@@ -15,12 +15,13 @@ import Error from "../../Components/Error";
 const SingleQuestionContainer = styled(Container)`
   background: #f3f7f7;
   min-height: calc(100vh - 161px);
-  margin-top: 160px;
+  margin-top: 155px;
 `;
 
 const Question = tw.p`
 font
-text-xl	
+text-xl
+md:text-2xl	
 mr-1
 
 `;
@@ -127,7 +128,7 @@ const SingleQuestion = ({
     <SingleQuestionContainer>
       <div className="flex ">
         <Question>
-          <strong> Q{selectedQuestionIndex + 1}</strong>.
+          <strong className="mr-1"> Q{selectedQuestionIndex + 1}.</strong>
         </Question>
         <div className="w-full md:w-auto">
           <Question className="mb-6 md:mb-8">{question}</Question>
@@ -142,7 +143,7 @@ const SingleQuestion = ({
                           <div className="w-6 h-6 rounded-full bg-green-600 "></div>
                         )}
                       </div>
-                      <p> {element.title}</p>
+                      <p className="text-base md:text-lg"> {element.title}</p>
                     </div>
                   </Option>
                 );

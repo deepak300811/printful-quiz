@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useStore } from "../../Store";
+import AnimatedNumber from "animated-number-react";
 
 const ProgressBar = () => {
   const [globalState] = useStore();
@@ -32,7 +33,11 @@ const ProgressBar = () => {
         </div>
         <div className="text-right">
           <span className="text-xs md:text-sm font-semibold inline-block text-white ">
-            {isNaN(percentage) ? 0 : percentage}% Completed
+            <AnimatedNumber
+              value={isNaN(percentage) ? 0 : percentage}
+              formatValue={(value) => Math.round(value)}
+            />
+            % Completed
           </span>
         </div>
       </div>
