@@ -3,7 +3,6 @@ import tw from "tailwind-styled-components";
 import { useStore } from "../../Store";
 import { Container } from "../../styles/Global/GenericComponents";
 import ProgressBar from "../../Components/ProgressBar";
-// import ResultIcon from "resultIcon.svg";
 const ResultContainer = tw(Container)`
 bg-gray-800
 h-screen	
@@ -15,9 +14,6 @@ px-8
  items-center
  
 `;
-// flex
-// flex-col
-// justify-center
 
 const Result = () => {
   const [globalState] = useStore();

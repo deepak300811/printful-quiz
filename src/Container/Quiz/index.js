@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useStore } from "../../Store";
-import { setErrorFlag, setQuestionsLength } from "../../Store/QuizDataReducer";
+import { setErrorFlag, setQuestionsLength } from "../../Store/actionCreators";
 import SingleQuestion from "../../Components/Single-Question";
 import QuizHeader from "../../Components/QuizHeader";
 import axios from "axios";
@@ -17,7 +17,6 @@ const Quiz = () => {
         const res = await axios.get(
           `https://printful.com/test-quiz.php?action=questions&quizId=${globalState.selectedQuiz.id}`
         );
-        console.log("questions=", res.data.length);
         setQuestions(res.data);
         dispatch(setQuestionsLength(res.data.length));
       } catch (error) {

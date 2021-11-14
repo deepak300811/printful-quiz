@@ -11,7 +11,6 @@ items-center
 
 export const StyledFormContainer = Styled(FormContainer)`
  background: linear-gradient(45deg,  rgba(66, 183, 245,0.8) 0%,rgba(66, 245, 189,0.4) 100%);
- /* background:linear-gradient(120deg,#1f2937 0%,#047857 120%); */
 `;
 export const Form = tw.div`
 w-10/12
@@ -25,9 +24,12 @@ shadow-lg
 
 export const Heading = Styled.p`
 color: #06e19d;
-font-size: 1.5rem;
+font-size: 2rem;
 font-weight:500;
 margin-bottom:1.5rem;
+@media (max-width:767px){
+  font-size: 1.5rem;
+}
 `;
 
 export const Label = tw.p`

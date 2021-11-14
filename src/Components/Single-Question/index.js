@@ -1,68 +1,25 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import styled from "styled-components";
 import { useStore } from "../../Store";
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 import {
   nextQuestion,
   setErrorFlag,
   updateScore,
-} from "../../Store/QuizDataReducer";
-import { Container } from "../../styles/Global/GenericComponents";
-import tw from "tailwind-styled-components";
-import Skeleton from "react-loading-skeleton";
-import "react-loading-skeleton/dist/skeleton.css";
+} from "../../Store/actionCreators";
 import Error from "../../Components/Error";
-const SingleQuestionContainer = styled(Container)`
-  background: #f3f7f7;
-  min-height: calc(100vh - 161px);
-  margin-top: 155px;
-`;
-
-const Question = tw.p`
-font
-text-xl
-md:text-2xl	
-mr-1
-
-`;
-
-const OptionGrid = tw.ul`
-grid
-gap-6
-grid-cols-1	
-md:grid-cols-2	
-pr-6
-`;
-
-const Option = tw.div`
-flex
-cursor-pointer
-p-6
-bg-gray-200	
-rounded-lg
-text-gray-800
-hover:text-gray-100
-hover:bg-gray-800
-shadow
-transition-colors	
-duration-500	
-`;
-
-const AnswerSubmit = tw.button`
-  mt-6  
-  md:mt-10
-  py-2
-  px-8
-  bg-green-600
-  text-white
-  inline-block
-  rounded-lg
-  ml-1
-  cursor-pointer
-  hover:bg-green-500
-  disabled:opacity-50
-  shadow-lg
-`;
+import {
+  Question,
+  SingleQuestionContainer,
+  Option,
+  OptionGrid,
+  AnswerSubmit,
+  FlexCenter,
+  OptionText,
+  RadioInnerCircle,
+  RadioOuterCircle,
+} from "./styles";
 
 const SingleQuestion = ({
   questionId,
@@ -113,6 +70,7 @@ const SingleQuestion = ({
       setSelectedOption(null);
       dispatch(nextQuestion());
     } catch (error) {
+      console.log("error=", error.message);
       setLoading(false);
       setSelectedOption(null);
       dispatch(setErrorFlag(true));
@@ -123,6 +81,15 @@ const SingleQuestion = ({
     setOptions([]);
     await handelAnswerSubmittion();
   };
+
+  const SkeletonLoading = (
+    <>
+      <Skeleton className="option" />
+      <Skeleton className="option" />
+      <Skeleton className="option" />
+      <Skeleton className="option" />
+    </>
+  );
 
   return (
     <SingleQuestionContainer>
@@ -136,25 +103,23 @@ const SingleQuestion = ({
             {options.length > 0 ? (
               options.map((element) => {
                 return (
-                  <Option onClick={() => handleAnswerSelection(element)}>
-                    <div className="flex items-center ">
-                      <div className="w-8 h-8 rounded-full bg-white mr-4 flex items-center justify-center">
+                  <Option
+                    onClick={() => handleAnswerSelection(element)}
+                    key={element.id}
+                  >
+                    <FlexCenter>
+                      <RadioOuterCircle>
                         {selectedOption?.id === element.id && (
-                          <div className="w-6 h-6 rounded-full bg-green-600 "></div>
+                          <RadioInnerCircle />
                         )}
-                      </div>
-                      <p className="text-base md:text-lg"> {element.title}</p>
-                    </div>
+                      </RadioOuterCircle>
+                      <OptionText> {element.title}</OptionText>
+                    </FlexCenter>
                   </Option>
                 );
               })
             ) : !globalState.error ? (
-              <>
-                <Skeleton className="option" />
-                <Skeleton className="option" />
-                <Skeleton className="option" />
-                <Skeleton className="option" />
-              </>
+              SkeletonLoading
             ) : (
               <Error />
             )}
