@@ -2,15 +2,20 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { useStore } from "../../Store";
-import { nextQuestion, updateScore } from "../../Store/QuizDataReducer";
+import {
+  nextQuestion,
+  setErrorFlag,
+  updateScore,
+} from "../../Store/QuizDataReducer";
 import { Container } from "../../styles/Global/GenericComponents";
 import tw from "tailwind-styled-components";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
+import Error from "../../Components/Error";
 const SingleQuestionContainer = styled(Container)`
   background: #f3f7f7;
   min-height: calc(100vh - 161px);
-  margin-top: 155px;
+  margin-top: 160px;
 `;
 
 const Question = tw.p`
@@ -22,8 +27,7 @@ mr-1
 
 const OptionGrid = tw.ul`
 grid
-gap-4
-md:gap-6
+gap-6
 grid-cols-1	
 md:grid-cols-2	
 pr-6
@@ -66,31 +70,32 @@ const SingleQuestion = ({
   selectedQuestionIndex,
 }) => {
   const [options, setOptions] = useState([]);
-  const [, dispatch] = useStore();
+  const [globalState, dispatch] = useStore();
   const [selectedOption, setSelectedOption] = useState("");
   const [loading, setLoading] = useState(false);
   useEffect(() => {
     const getOptions = async () => {
+      dispatch(setErrorFlag(false));
       try {
         const res = await axios.get(
           `https://printful.com/test-quiz.php?action=answers&quizId=${quizID}&questionId=${questionId}`
         );
-        // console.log("questionsOptions=", res.data);
         setOptions(res.data);
       } catch (error) {
         console.log("Error=", error.message);
+        dispatch(setErrorFlag(true));
       }
     };
     getOptions();
-  }, [questionId, quizID]);
+  }, [questionId, quizID, dispatch]);
 
   const handleAnswerSelection = (item) => {
     setSelectedOption(item);
   };
-  // console.log("selected answer=", selectedOption);
 
   const handelAnswerSubmittion = async () => {
     setLoading(true);
+    dispatch(setErrorFlag(false));
     let url = `https://printful.com/test-quiz.php?action=submit&quizId=${quizID}`;
     for (let i = 0; i <= selectedQuestionIndex; i++) {
       if (i === selectedQuestionIndex) {
@@ -103,20 +108,19 @@ const SingleQuestion = ({
       const res = await axios.get(url);
 
       dispatch(updateScore(res.data));
-
-      // console.log("resSubmittion=", res.data);
+      setLoading(false);
+      setSelectedOption(null);
+      dispatch(nextQuestion());
     } catch (error) {
-      console.log("error=", error.message);
+      setLoading(false);
+      setSelectedOption(null);
+      dispatch(setErrorFlag(true));
     }
-    // console.log("url=", url);
   };
 
   const handelNextOpearations = async () => {
     setOptions([]);
     await handelAnswerSubmittion();
-    setLoading(false);
-    setSelectedOption(null);
-    dispatch(nextQuestion());
   };
 
   return (
@@ -143,13 +147,15 @@ const SingleQuestion = ({
                   </Option>
                 );
               })
-            ) : (
+            ) : !globalState.error ? (
               <>
                 <Skeleton className="option" />
                 <Skeleton className="option" />
                 <Skeleton className="option" />
                 <Skeleton className="option" />
               </>
+            ) : (
+              <Error />
             )}
           </OptionGrid>
 

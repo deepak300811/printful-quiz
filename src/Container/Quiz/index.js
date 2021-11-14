@@ -1,15 +1,18 @@
 import React, { useState, useEffect } from "react";
 import { useStore } from "../../Store";
-import { setQuestionsLength } from "../../Store/QuizDataReducer";
+import { setErrorFlag, setQuestionsLength } from "../../Store/QuizDataReducer";
 import SingleQuestion from "../../Components/Single-Question";
 import QuizHeader from "../../Components/QuizHeader";
 import axios from "axios";
+import Error from "../../Components/Error";
+
 const Quiz = () => {
   const [globalState, dispatch] = useStore();
   const [questions, setQuestions] = useState([]);
 
   useEffect(() => {
     const getQuestions = async () => {
+      dispatch(setErrorFlag(false));
       try {
         const res = await axios.get(
           `https://printful.com/test-quiz.php?action=questions&quizId=${globalState.selectedQuiz.id}`
@@ -19,6 +22,7 @@ const Quiz = () => {
         dispatch(setQuestionsLength(res.data.length));
       } catch (error) {
         console.log("Error=", error.message);
+        dispatch(setErrorFlag(true));
       }
     };
     getQuestions();
@@ -37,8 +41,10 @@ const Quiz = () => {
             selectedQuestionIndex={globalState.selectedQuestion}
           />
         </>
-      ) : (
+      ) : !globalState.error ? (
         <div className="loader mt-80">Loading...</div>
+      ) : (
+        <Error />
       )}
     </div>
   );

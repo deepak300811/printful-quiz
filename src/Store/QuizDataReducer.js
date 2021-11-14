@@ -4,6 +4,7 @@ export const STOP_TEST = "STOP_TEST";
 export const NEXT_QUESTION = "NEXT_QUESTION";
 export const UPDATE_SCORE = "UPDATE_SCORE";
 export const INITIALIZE_FROM_SESSION = "INITIALIZE_FROM_SESSION";
+export const SET_ERROR_FLAG = "SET_ERROR_FLAG";
 export const initialState = {
   examineeName: "",
   selectedQuiz: {},
@@ -16,6 +17,7 @@ export const initialState = {
     total: 0,
   },
   testCompletion: false,
+  error: false,
 };
 
 export const inputExamineeDetails = (userData) => ({
@@ -46,6 +48,11 @@ export const initializeFromSession = (data) => ({
   data,
 });
 
+export const setErrorFlag = (flag) => ({
+  type: SET_ERROR_FLAG,
+  flag,
+});
+
 const makeEntryInSessionStorage = (state) => {
   const stateTemp = sessionStorage.getItem("ultimate_quiz");
   if (stateTemp) {
@@ -61,6 +68,11 @@ const deleteFromSession = () => {
 export const quizDataReducer = (state = initialState, action) => {
   if (action.type === INPUT_EXAMINEE_DETAILS) {
     console.log("reducdata=", action);
+    makeEntryInSessionStorage({
+      ...state,
+      examineeName: action.userData.examineeName,
+      selectedQuiz: action.userData.selectedQuiz,
+    });
     return {
       ...state,
       examineeName: action.userData.examineeName,
@@ -112,6 +124,12 @@ export const quizDataReducer = (state = initialState, action) => {
     };
   } else if (action.type === INITIALIZE_FROM_SESSION) {
     console.log("initialization=", action);
-    return action.data;
+    return { ...action.data, error: false };
+  } else if (action.type === SET_ERROR_FLAG) {
+    console.log("statewitherror=", state);
+    return {
+      ...state,
+      error: action.flag,
+    };
   }
 };

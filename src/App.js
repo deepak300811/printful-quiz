@@ -19,6 +19,7 @@ function App() {
         dispatch(initializeFromSession(parsedData));
       }
     };
+
     parseStorageData();
   }, [dispatch]);
   return (

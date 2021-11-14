@@ -22,18 +22,17 @@ const ProgressBar = () => {
             rounded-full
             text-white
             bg-green-700	
-            
             text-xs
+            md:text-sm
             "
-            // uppercase
           >
             {globalState.selectedQuestion} out of {globalState.noOfQuestions}{" "}
             answered
           </span>
         </div>
         <div className="text-right">
-          <span className="text-xs font-semibold inline-block text-white">
-            {percentage}% Completed
+          <span className="text-xs md:text-sm font-semibold inline-block text-white ">
+            {isNaN(percentage) ? 0 : percentage}% Completed
           </span>
         </div>
       </div>

@@ -42,7 +42,9 @@ hover:bg-red-500
 py-1
 px-3
 rounded-lg
-cursor-pointer	
+cursor-pointer
+ml-2	
+z-20
 `;
 
 export const Tooptip = styled.div`
@@ -57,6 +59,19 @@ export const Tooptip = styled.div`
   line-height: 1rem;
   border-radius: 5px;
   z-index: 2;
+  line-height: 1.4;
+
+  @media (min-width: 767px) {
+    font-size: 1rem;
+
+    width: 200px;
+  }
+`;
+
+export const UserDetails = styled.div`
+  display: grid;
+  grid-template-columns: 48px 1fr;
+  grid-row-gap: 0.3rem;
 `;
 
 const QuizHeader = () => {
@@ -90,17 +105,18 @@ const QuizHeader = () => {
             </svg>{" "}
             {showToolTip && (
               <Tooptip>
-                <strong>Name:</strong> {globalState.examineeName}
-                <br />
-                <strong>Quiz:</strong> {globalState.selectedQuiz.title}
+                <UserDetails>
+                  <strong className="mr-1">Name </strong>
+                  <span className="leading-5"> {globalState.examineeName}</span>
+
+                  <strong>Quiz</strong>
+                  <span> {globalState.selectedQuiz.title}</span>
+                </UserDetails>
               </Tooptip>
             )}
           </UserIcon>
           <UserIcon>|</UserIcon>
-          <StopButton className="ml-2" onClick={() => handleStop()}>
-            {" "}
-            Stop Test
-          </StopButton>
+          <StopButton onClick={() => handleStop()}> Stop Test</StopButton>
         </HeaderOtherText>
       </FlexBox>
       <ProgressBar />
