@@ -3,17 +3,17 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Select from "react-select";
 import { useStore } from "../../Store";
-import { inputExamineeDetails } from "../../Store/actionCreators";
+import { inputExamineeDetails, setErrorFlag } from "../../Store/actionCreators";
 import {
   StyledFormContainer,
   Form,
   Label,
   Heading,
-  Error,
   StyledButton,
 } from "./styles";
+import Error from "../../Components/Error";
 const InputForm = () => {
-  const [, dispatch] = useStore();
+  const [globalState, dispatch] = useStore();
   const [quizCategories, setQuizCategories] = useState([]);
   const [selectedOption, setSelectOption] = useState({
     value: 0,
@@ -24,6 +24,8 @@ const InputForm = () => {
   const [isMounted, setIsMounted] = useState(true);
   useEffect(() => {
     if (isMounted) {
+      dispatch(setErrorFlag(false));
+
       const getCategoriesData = async () => {
         try {
           const res = await axios.get(
@@ -38,12 +40,13 @@ const InputForm = () => {
           setQuizCategories(list);
         } catch (error) {
           console.log("error=", error.message);
+          dispatch(setErrorFlag(true));
         }
       };
 
       getCategoriesData();
     }
-  }, [isMounted]);
+  }, [isMounted, dispatch]);
 
   useEffect(() => () => setIsMounted(false));
 
@@ -74,7 +77,7 @@ const InputForm = () => {
 
   return (
     <StyledFormContainer>
-      {quizCategories.length > 0 && (
+      {quizCategories.length > 0 ? (
         <Form>
           <Heading>Technical Task</Heading>
           <form onSubmit={(e) => handleSubmit(e)}>
@@ -120,6 +123,10 @@ const InputForm = () => {
             </StyledButton>
           </form>
         </Form>
+      ) : globalState.error ? (
+        <Error />
+      ) : (
+        <div className="loader ">Loading...</div>
       )}
     </StyledFormContainer>
   );
