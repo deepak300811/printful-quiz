@@ -47,6 +47,8 @@
 
 2. If entry in this fake server DB file fails but due to non avaibality of the instance, then it will not stop anything on the UI, and user will be able to see their final result.
 
+3. Have not stored the fake server API address key in env.local file for this project to make it easier for anyone to run on on their local machines without doing any extra steps.
+
 # Availability 🚀
 
 This working project can be viewed on: https://ultimate-quiz-by-deepak.netlify.app/
