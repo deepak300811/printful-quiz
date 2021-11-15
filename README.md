@@ -1,3 +1,16 @@
+# Some things about the architecture of this project
+
+1. For styling: TailwindCSS coupled with styled components are used .
+2. A third party package called tailwind-styled-components is used, it makes it easy to write components with Tailwind as it would be with Styled components. A tailwind component can be styled to enhance it with styled component.
+3. Other libraries:
+
+   - axios -> For making network requests to get questions and options from printful quiz API.
+   - react-select -> Provide out of the box solution to use drop down in the landing login form.
+   - react-loading-skeleton -> Provide out of the box solution to add loading skeletons. Can be seeing when options loads.
+   - animated-number-react -> To animate the number increase in the progress bar from 0 to 100%
+
+   All these libraries are tested and trusted with over 100,000 weekly downloads, and animated-number-react with 8000 weekly downloads
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
