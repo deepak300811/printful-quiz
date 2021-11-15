@@ -1,21 +1,8 @@
 ### Designed and Developed by : Deepak Kumar (deepak300811@gmail.com)
 
-# Third party / Helper libraries used in this project
-
-1. For styling: TailwindCSS coupled with styled components are used .
-2. A third party package called tailwind-styled-components is used, it makes it easy to write components with Tailwind as it would be with Styled components. A tailwind component can be styled to enhance it with styled component.
-3. Other libraries:
-
-   - axios -> For making network requests to get questions and options from printful quiz API.
-   - react-select -> Provide out of the box solution to use drop down in the landing login form.
-   - react-loading-skeleton -> Provide out of the box solution to add loading skeletons. Can be seeing when options loads.
-   - animated-number-react -> To animate the number increase in the progress bar from 0 to 100%
-
-   All these libraries are tested and trusted with over 100,000 weekly downloads, and animated-number-react with 8000 weekly downloads
-
 # Architecture of the project:
 
-1. A third party library called reducer might have been used for maintaining the state of this app but, that would be an overkill for a demo project. So we have heavily relied on the concept of React Context API coupled with useReducer.
+1. State Management: A third party library called reducer might have been used for maintaining the state of this app but, that would be an overkill for a demo project. So we have heavily relied on the concept of React Context API coupled with useReducer.
 
 2. Concept of Action Creators are used which will dispatch actions leading reducer logic to update the state.
 
@@ -34,6 +21,20 @@
    - Containers: main components that can contain anothe components.
    - Components: Individual units that can come under another components, can be repeated multiple times as a part of the page, without refreshing the whole page, components can contain their own logic while will not refresh their parent but just themselves. Eg: Single-Question component where the quiz container remain as it is but it's child changes. Or Header component which is again used in Quiz container.
    - Store: Contains logic for coupling of useContext and useReducer hook and provides a custom hook named useStore which can attach any component to the central store.
+
+# Third party / Helper libraries used in this project
+
+1. For styling: TailwindCSS coupled with styled components are used .
+2. A third party package called tailwind-styled-components is used, it makes it easy to write components with Tailwind as it would be with Styled components. A tailwind component can be styled to enhance it with styled component.
+3. Other libraries:
+
+   - axios -> For making network requests to get questions and options from printful quiz API.
+   - react-select -> Provide out of the box solution to use drop down in the landing login form.
+   - react-loading-skeleton -> Provide out of the box solution to add loading skeletons. Can be seeing when options loads.
+   - animated-number-react -> To animate the number increase in the progress bar from 0 to 100%
+
+   All these libraries are tested and trusted with over 100,000 weekly downloads, and animated-number-react with 8000 weekly downloads
+
 
 # A fake server
 
