@@ -1,4 +1,4 @@
-### Developed and Designed by : Deepak Kumar (deepak300811@gmail.com)
+### Designed and Developed by : Deepak Kumar (deepak300811@gmail.com)
 
 # Third party / Helper libraries used in this project
 
