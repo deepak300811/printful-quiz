@@ -10,6 +10,7 @@ import {
   Label,
   Heading,
   StyledButton,
+  ErrorMessage,
 } from "./styles";
 import Error from "../../Components/Error";
 const InputForm = () => {
@@ -91,7 +92,7 @@ const InputForm = () => {
                 onChange={(e) => handelExinameeName(e)}
               ></input>
               {(!examineeName || examineeName.length === 0) && touched ? (
-                <Error>Please enter name</Error>
+                <ErrorMessage>Please enter name</ErrorMessage>
               ) : (
                 ""
               )}
@@ -110,7 +111,7 @@ const InputForm = () => {
               />
 
               {selectedOption.value === 0 && touched ? (
-                <Error>Please select quiz</Error>
+                <ErrorMessage>Please select quiz</ErrorMessage>
               ) : (
                 ""
               )}

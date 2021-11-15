@@ -46,7 +46,7 @@ export const StyledButton = Styled.button`
     }
 `;
 
-export const Error = tw.p`
+export const ErrorMessage = tw.p`
   mt-1
   pl-1
   text-red-500	
