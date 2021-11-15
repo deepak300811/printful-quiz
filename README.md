@@ -1,4 +1,4 @@
-- Developed and Designed by : Deepak Kumar (deepak300811@gmail.com)
+### Developed and Designed by : Deepak Kumar (deepak300811@gmail.com)
 
 # Third party / Helper libraries used in this project
 
@@ -44,6 +44,10 @@
    Note: If this server is not hit for a long time then it's instance gets cancled as it is a free account, so we loose data. But it is fine here as it is only for demo perposes.
 
 2. If entry in this server jsons file fails but to non avaibality of the instance, then it will not stop anything on the UI, and user will be able to see their final result.
+
+# Availability
+
+This working project can be viewed on: https://ultimate-quiz-by-deepak.netlify.app/
 
 # Getting Started with Create React App
 
