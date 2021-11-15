@@ -1,3 +1,5 @@
+- Developed and Designed by : Deepak Kumar (deepak300811@gmail.com)
+
 # Third party / Helper libraries used in this project
 
 1. For styling: TailwindCSS coupled with styled components are used .
@@ -14,13 +16,20 @@
 # Architecture of the project:
 
 1. A third party library called reducer might have been used for maintaining the state of this app but, that would be an overkill for a demo project. So we have heavily relied on the concept of React Context API coupled with useReducer.
+
 2. Concept of Action Creators are used which will dispatch actions leading reducer logic to update the state.
+
 3. A central state / store is maintained which contains information of the current session.
+
    - This information comparises of examineeName,selectedQuiz,noOfQuestions,selectedQuestion,result,testCompletion. And this information is saved in the session storage of the test, so that test status can be retained between page refreshes.
    - This session data we can also store in a server rather than on the sessions storage of the browser, but that is not implemented as it would go out of the scope of this project. Though if u like i am happy to implement 😊
+
 4. Passing props to a component, making it totally dependent on it's parent (/src/Components/Single-Question) or making a component take all it's required props from the central state (src/Components/ProgressBar), this project demos both of these approaches.
+
 5. Also, styles of each component are kept in separate files to keep code logic clean and lean.
+
 6. A separate Error component is introduced which will be triggered if some request fails to do the intended task.
+
 7. Folder Structure:
    - Containers: main components that can contain anothe components.
    - Components: Individual units that can come under another components, can be repeated multiple times as a part of the page, without refreshing the whole page, components can contain their own logic while will not refresh their parent but just themselves. Eg: Single-Question component where the quiz container remain as it is but it's child changes. Or Header component which is again used in Quiz container.
@@ -44,7 +53,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 In the project directory, you can run:
 
-### `yarn start`
+### `npm start`
 
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
@@ -52,12 +61,12 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 The page will reload if you make edits.\
 You will also see any lint errors in the console.
 
-### `yarn test`
+### `npm test`
 
 Launches the test runner in the interactive watch mode.\
 See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `yarn build`
+### `npm run build`
 
 Builds the app for production to the `build` folder.\
 It correctly bundles React in production mode and optimizes the build for the best performance.
@@ -67,7 +76,7 @@ Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `yarn eject`
+### `npm run eject`
 
 **Note: this is a one-way operation. Once you `eject`, you can’t go back!**
 
