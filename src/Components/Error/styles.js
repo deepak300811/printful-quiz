@@ -20,7 +20,8 @@ export const StyledErrorContainer = styled(ErrorContainer)`
 export const ErrorIcon = tw.div`
     w-6/12 
     md:5/12
-    lg:w-4/12 
+    lg:w-80
+    xl:w-96	
     h-auto `;
 
 export const ErrorInformativeText = tw.p`

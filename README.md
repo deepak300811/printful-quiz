@@ -1,4 +1,4 @@
-# Some things about the architecture of this project
+# Third party / Helper libraries used in this project
 
 1. For styling: TailwindCSS coupled with styled components are used .
 2. A third party package called tailwind-styled-components is used, it makes it easy to write components with Tailwind as it would be with Styled components. A tailwind component can be styled to enhance it with styled component.
@@ -10,6 +10,31 @@
    - animated-number-react -> To animate the number increase in the progress bar from 0 to 100%
 
    All these libraries are tested and trusted with over 100,000 weekly downloads, and animated-number-react with 8000 weekly downloads
+
+# Architecture of the project:
+
+1. A third party library called reducer might have been used for maintaining the state of this app but, that would be an overkill for a demo project. So we have heavily relied on the concept of React Context API coupled with useReducer.
+2. Concept of Action Creators are used which will dispatch actions leading reducer logic to update the state.
+3. A central state / store is maintained which contains information of the current session.
+   - This information comparises of examineeName,selectedQuiz,noOfQuestions,selectedQuestion,result,testCompletion. And this information is saved in the session storage of the test, so that test status can be retained between page refreshes.
+   - This session data we can also store in a server rather than on the sessions storage of the browser, but that is not implemented as it would go out of the scope of this project. Though if u like i am happy to implement 😊
+4. Passing props to a component, making it totally dependent on it's parent (/src/Components/Single-Question) or making a component take all it's required props from the central state (src/Components/ProgressBar), this project demos both of these approaches.
+5. Also, styles of each component are kept in separate files to keep code logic clean and lean.
+6. A separate Error component is introduced which will be triggered if some request fails to do the intended task.
+7. Folder Structure:
+   - Containers: main components that can contain anothe components.
+   - Components: Individual units that can come under another components, can be repeated multiple times as a part of the page, without refreshing the whole page, components can contain their own logic while will not refresh their parent but just themselves. Eg: Single-Question component where the quiz container remain as it is but it's child changes. Or Header component which is again used in Quiz container.
+   - Store: Contains logic for coupling of useContext and useReducer hook and provides a custom hook named useStore which can attach any component to the central store.
+
+# A fake server
+
+1. As an addon a fake json server is deployed on heroku and can be used to push the result of the user to this server for tracking perposes, and yeah we can make use of this server to store sessions of the currect user 😉.But it will go out of the scope of this front end project so we are storing it in sessions store for the time being.
+   fake server Repo: https://github.com/deepak300811/fake-server-ultimate-quiz
+   Heroku Server address: https://fake-server-ultimate-quiz-prin.herokuapp.com/
+
+   Note: If this server is not hit for a long time then it's instance gets cancled as it is a free account, so we loose data. But it is fine here as it is only for demo perposes.
+
+2. If entry in this server jsons file fails but to non avaibality of the instance, then it will not stop anything on the UI, and user will be able to see their final result.
 
 # Getting Started with Create React App
 
