@@ -1,4 +1,5 @@
-### Designed and Developed by : Deepak Kumar (deepak300811@gmail.com)
+### The Ultimate Quiz
+### Designed and Developed by Deepak Kumar (deepak300811@gmail.com)
 
 # Architecture of the project:
 
