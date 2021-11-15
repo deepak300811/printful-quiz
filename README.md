@@ -1,7 +1,7 @@
-### `The Ultimate Quiz`
+### `The Ultimate Quiz 😎`
 ### Designed and Developed by Deepak Kumar (deepak300811@gmail.com)
 
-# Architecture of the project:
+# Architecture of the project🎁
 
 1. State Management: A third party library called reducer might have been used for maintaining the state of this app but, that would be an overkill for a demo project. So we have heavily relied on the concept of React Context API coupled with useReducer.
 
@@ -23,7 +23,7 @@
    - Components: Individual units that can come under another components, can be repeated or refreshed multiple times as a part of the page, without refreshing the whole page, components can contain their own logic which will process data coming from thier parent components (can be container or any other component). Eg: Single-Question component where the quiz container remain as it is but it's child changes. Or Header component which is again used in Quiz container.
    - Store: Contains logic for coupling of useContext and useReducer hook and provides a custom hook named useStore which can attach any component to the central store.
 
-# Third party / Helper libraries used in this project
+# Third party / Helper libraries used in this project❤️
 
 1. For styling: TailwindCSS coupled with styled components are used .
 2. A third party package called tailwind-styled-components is used, it makes it easy to write components with Tailwind as it would be with Styled components. A tailwind component can be styled to enhance it with styled component.
@@ -37,7 +37,7 @@
    All these libraries are tested and trusted with over 100,000 weekly downloads and some even have crossed million downloaded per week mark, except of animated-number-react with over 8000 weekly downloads
 
 
-# A fake server
+# A fake server🏴‍☠️
 
 1. As an addon a fake json server is deployed on heroku and can be used to push the result of the user to this server for tracking perposes, and yeah we can make use of this server to store sessions of the currect user 😉. But it will go out of the scope of this front end project so we are storing it in sessions storage for the time being.
    fake server Repo: https://github.com/deepak300811/fake-server-ultimate-quiz
@@ -47,7 +47,7 @@
 
 2. If entry in this fake server DB file fails but due to non avaibality of the instance, then it will not stop anything on the UI, and user will be able to see their final result.
 
-# Availability
+# Availability🚀
 
 This working project can be viewed on: https://ultimate-quiz-by-deepak.netlify.app/
 
